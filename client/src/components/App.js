@@ -16,14 +16,16 @@ const App = () => {
   const changeColor = () => {
     setColor(getRandomColor());
   };
+
   return (
-    <div
-      onClick={changeColor}
-      className="d-flex justify-content-center align-items-center"
-      style={{ backgroundColor: color, height: "100vh" }}
-    >
-      <Quote color={color} changeColor={changeColor} />
-    </div>
+    <>
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ backgroundColor: color, height: "100vh" }}
+      >
+        <Quote color={color} changeColor={changeColor} />
+      </div>
+    </>
   );
 };
 

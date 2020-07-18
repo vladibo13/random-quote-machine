@@ -1,43 +1,36 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Twitter, GitHub } from "react-feather";
+import IconGrid from "./IconGrid";
+import Button from "./Button";
+import BlockQuote from "./BlockQuote";
+import Spinner from "./Spinner";
 
 const Quote = ({ color, changeColor }) => {
   const [quote, setQuote] = useState({});
+  const [fetching, setFetching] = useState(false);
+
   const fetchQuotes = async () => {
+    setFetching(true);
     const quotesURL = "https://type.fit/api/quotes";
     const apiQuotes = await axios.get(quotesURL);
     const randomQuote =
       apiQuotes.data[Math.floor(Math.random() * apiQuotes.data.length)];
     console.log(randomQuote);
     setQuote(randomQuote);
+    setFetching(false);
   };
+
   useEffect(() => {
     fetchQuotes();
   }, [color]);
+
   return (
-    <div className="border w-50 bg-white container py-3">
-      <blockquote className="blockquote">
-        <p className="mb-0">{quote.text}</p>
-        <footer className="blockquote-footer">{quote.author}</footer>
-      </blockquote>
+    <div className="border w-50 bg-white container py-5 shadow-sm rounded">
+      {fetching ? <Spinner color={color} /> : <BlockQuote quote={quote} />}
       <hr />
       <div className="d-flex justify-content-between">
-        <div>
-          <a href="http://twitter.com/intent/tweet">
-            <Twitter color={color} size={48} />
-          </a>
-
-          <GitHub color={color} size={48} />
-        </div>
-
-        <button
-          className="btn  btn-lg text-white"
-          style={{ backgroundColor: color }}
-          onClick={() => changeColor()}
-        >
-          Click
-        </button>
+        <IconGrid color={color} />
+        <Button color={color} changeColor={changeColor} />
       </div>
     </div>
   );
