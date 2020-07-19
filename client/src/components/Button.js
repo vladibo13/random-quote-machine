@@ -4,7 +4,7 @@ const Button = ({ color, changeColor }) => {
   return (
     <button
       className="btn  btn-lg text-white"
-      style={{ backgroundColor: color }}
+      style={{ backgroundColor: color, outline: "none" }}
       onClick={() => changeColor()}
     >
       Click

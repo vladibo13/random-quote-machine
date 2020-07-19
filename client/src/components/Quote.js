@@ -11,13 +11,18 @@ const Quote = ({ color, changeColor }) => {
 
   const fetchQuotes = async () => {
     setFetching(true);
-    const quotesURL = "https://type.fit/api/quotes";
-    const apiQuotes = await axios.get(quotesURL);
-    const randomQuote =
-      apiQuotes.data[Math.floor(Math.random() * apiQuotes.data.length)];
-    console.log(randomQuote);
-    setQuote(randomQuote);
-    setFetching(false);
+
+    try {
+      const quotesURL = "https://type.fit/api/quotes";
+      const apiQuotes = await axios.get(quotesURL);
+      const randomQuote =
+        apiQuotes.data[Math.floor(Math.random() * apiQuotes.data.length)];
+      setQuote(randomQuote);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setFetching(false);
+    }
   };
 
   useEffect(() => {
