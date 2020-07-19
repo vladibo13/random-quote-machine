@@ -30,7 +30,7 @@ const Quote = ({ color, changeColor }) => {
   }, [color]);
 
   return (
-    <div className="border w-50 bg-white container py-5 shadow-sm rounded">
+    <div className="border bg-white container py-5 shadow-sm rounded ">
       {fetching ? <Spinner color={color} /> : <BlockQuote quote={quote} />}
       <hr />
       <div className="d-flex justify-content-between">

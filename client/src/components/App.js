@@ -18,14 +18,18 @@ const App = () => {
   };
 
   return (
-    <>
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ backgroundColor: color, height: "100vh" }}
-      >
-        <Quote color={color} changeColor={changeColor} />
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{ backgroundColor: color, height: "100vh" }}
+    >
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <Quote color={color} changeColor={changeColor} />
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
